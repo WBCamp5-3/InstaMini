@@ -4,7 +4,7 @@ const app = express();
 
 
 //First Route
-app.get('/', (req,res) => res.send('hello'));
+app.get('/', (req,res) => res.send('hello team 3!'));
 
 const port = 5104;
 
