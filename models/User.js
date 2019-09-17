@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 //Create schema (like columns in spreadsheet)
 //"new" instantiates an object
+//Defining each column (name, email, etc) and their properties
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -27,4 +28,7 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+//Instead of exporting just blueprint (UserSchema), export creation of what blueprint is for (table/document)
+//Create new variable called User and ask mongoose to make a model of UserSchema called users
+//User refers to this actual table in MongoDB
+module.exports = User = mongoose.model("users", UserSchema);
