@@ -25,7 +25,6 @@ app.use('/api/posts', posts);
 
 
 
-
 const port = 5104;
 
 app.listen(port, () => console.log(`Server running on ${port}`));
