@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Telling bodyParser we're using json
 app.use(bodyParser.json());
 
+
+
 //Db config
 const db = require("./config/keys").mongoURI;
 
