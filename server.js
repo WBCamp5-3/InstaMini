@@ -6,6 +6,7 @@ const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 
 // Body parser middleware
 // Telling Express to use bodyParser
@@ -15,6 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 
+//Passport configuration
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 //Db config
 const db = require("./config/keys").mongoURI;

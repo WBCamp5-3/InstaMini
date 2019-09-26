@@ -6,6 +6,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt =require("jsonwebtoken");
 const keys =require("../../config/keys");
+const passport = require("passport");
 
 
 // @route   POST api/users/register
@@ -121,7 +122,23 @@ router.post('/login', (req,res) => {
 
 
 
-// Passport is Builtin libraty that helps to authenticate  whether the token is valid and decrypt the token.
+
+// Passport is Builtin library that helps to authenticate  whether the token is valid and decrypt the token.
+//passport is intialized in server.js
+// @route   GET api/users/current
+// @desc    return current user
+// @access  Private
+
+
+router.get('/current', 
+passport.authenticate('jwt', {session:false}),
+(req, res) => {
+    res.json({
+      msg:"success"
+    });
+  });
+
+
 
 
 module.exports = router;
