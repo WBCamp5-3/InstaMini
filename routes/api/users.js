@@ -134,7 +134,10 @@ router.get('/current',
 passport.authenticate('jwt', {session:false}),
 (req, res) => {
     res.json({
-      msg:"success"
+      //passport sends back the following info from MongoDb:
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name
     });
   });
 
