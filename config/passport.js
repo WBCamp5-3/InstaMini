@@ -28,10 +28,10 @@ module.exports = passport => {
           if (user) {
             //pass on to next api call
             //done is built-in callback in passport
-            //done takes in two parameters: 1)any errors (none) & 2)info you need to pass (whole user object)
+            //done takes in two parameters: 1)any errors (null==none) & 2)info you need to pass (user==whole user object)
             return done(null, user);
           }
-          // no errors and no user (having no user is not an error)
+          // no errors, no user (having no user is not an error)
           return done(null, false);
         })
         .catch(err => console.log(err));
