@@ -20,14 +20,16 @@ module.exports = function validateRegisterInput(data) {
     errors.name = "Name field is required";
   }
 
+    //Check for valid email address with built-in isEmail function
+  if (!Validator.isEmail(data.email)) {
+    errors.email = "Email is invalid";
+  }
+  
+  
   if (Validator.isEmpty(data.email)) {
     errors.email = "Email field is required";
   }
 
-  //Check for valid email address with built-in isEmail function
-  if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
-  }
 
   //isLength function built-in in Validator
   if (!Validator.isLength(data.password, { min: 8, Max: 30 })) {
