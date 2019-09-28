@@ -6,7 +6,11 @@ const Schema = mongoose.Schema;
 //"new" instantiates an object
 //Defining each column (name, email, etc) and their properties
 const UserSchema = new Schema({
-  name: {
+  userName: {
+    type: String,
+    required: true
+  },
+  fullName: {
     type: String,
     required: true
   },
@@ -18,7 +22,11 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  avatar: {
+  profilePicture: {
+    type: String,
+    required: true
+  },
+  location: {
     type: String,
     required: false
   },
