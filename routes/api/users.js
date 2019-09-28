@@ -35,7 +35,7 @@ router.post("/register", (req, res) => {
       } else {
         // based on gravatar's api (url function, s,r,d, etc.)
         // gravatar uses user email to provide gravatar image
-        const avatar = gravatar.url(req.body.email, {
+        const profilePicture = gravatar.url(req.body.email, {
           s: "200",
           r: "pg",
           d: "mm"
@@ -44,8 +44,8 @@ router.post("/register", (req, res) => {
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
-          // avatar uses deconstruction since column and variable name are same
-          avatar,
+          // profilePicture uses deconstruction since column and variable name are same
+          profilePicture,
           password: req.body.password
         });
         // bcrypt has genSalt function
@@ -102,7 +102,7 @@ router.post("/login", (req, res) => {
           const payload = {
             id: user.id,
             name: user.name,
-            avatar: user.avatar
+            profilePicture: user.profilePicture
           };
           //token is in the form of garbage set of characters.
           //each token is unique based on the combinations of data(id,name and avatar) in payload.
