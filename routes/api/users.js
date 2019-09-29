@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
 
 // @route   POST api/users/register
 // @desc    Register a user
@@ -22,18 +24,18 @@ const validateRegisterInput = require("../../validation/register");
 router.post("/register", (req, res) => {
   // first validate user input
   const { errors, isValid } = validateRegisterInput(req.body);
-  if (!isValid){
+  if (!isValid) {
     return res.status(400).json(errors);
   }
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
-        errors.email="Email already exists"
+        errors.email = "Email already exists"
         return res.status(400).json(errors);
       } else {
         // based on gravatar's api (url function, s,r,d, etc.)
         // gravatar uses user email to provide gravatar image
-        const avatar = gravatar.url(req.body.email, {
+        const profilePicture = gravatar.url(req.body.email, {
           s: "200",
           r: "pg",
           d: "mm"
@@ -42,8 +44,8 @@ router.post("/register", (req, res) => {
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
-          // avatar uses deconstruction since column and variable name are same
-          avatar,
+          // profilePicture uses deconstruction since column and variable name are same
+          profilePicture,
           password: req.body.password
         });
         // bcrypt has genSalt function
@@ -71,15 +73,19 @@ router.post("/register", (req, res) => {
 // @access  Public
 
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        return res.status(404).json({
-          email: "User not found"
-        });
+        errors.email = "User not found";
+        return res.status(404).json(errors);
       }
 
       // bcrypt helps in encryption pf password in login and
@@ -89,15 +95,14 @@ router.post("/login", (req, res) => {
         //compare function gives a boolean which comes to isMatch.
         .then(isMatch => {
           if (!isMatch) {
-            return res.status(400).json({
-              password: "password doesnot match"
-            });
+            errors.password = "password doesnot match";
+            return res.status(400).json(errors);
           }
 
           const payload = {
             id: user.id,
             name: user.name,
-            avatar: user.avatar
+            profilePicture: user.profilePicture
           };
           //token is in the form of garbage set of characters.
           //each token is unique based on the combinations of data(id,name and avatar) in payload.
