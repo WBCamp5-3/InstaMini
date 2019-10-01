@@ -7,7 +7,10 @@ const passport = require('passport');
 const Profile = require('../../models/Profile');
 // Load User Model
 const User = require('../../models/User');
-
+// Load Validation
+const validateProfileInput = require('../../validation/profile');
+const validatePostsInput = require('../../validation/posts');
+const validateTaggedInput = require('../../validation/tagged');
 
 
 
@@ -153,6 +156,67 @@ router.post(
             });
         }
       });
+  }
+);
+
+
+// @route   POST api/profile/posts
+// @desc    Add posts to profile
+// @access  Private
+router.post(
+  '/posts',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validatePostsInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newPos = {
+        image: req.body.posts,
+        location: req.body.location,
+        description: req.body.description
+      };
+
+      // Add to posts array
+      profile.posts.unshift(newPos);
+
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
+
+// @route   POST api/profile/tagged
+// @desc    Add tagged to profile
+// @access  Private
+router.post(
+  '/tagged',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateTaggedInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newTag = {
+        image: req.body.image,
+        location: req.body.location,
+        description: req.body.description
+      };
+
+      // Add to tag array
+      profile.tagged.unshift(newTag);
+
+      profile.save().then(profile => res.json(profile));
+    });
   }
 );
 
