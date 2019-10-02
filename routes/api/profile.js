@@ -124,10 +124,10 @@ router.post(
     if (req.body.location) profileFields.location = req.body.location;
     if (req.body.status) profileFields.status = req.body.status;
 
-    // Social
-    profileFields.social = {};
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
+    // // Social
+    // profileFields.social = {};
+    // if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
+    // if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     
 
     Profile.findOne({ user: req.user.id })
@@ -177,7 +177,7 @@ router.post(
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       const newPos = {
-        image: req.body.posts,
+        image: req.body.image,
         location: req.body.location,
         description: req.body.description
       };

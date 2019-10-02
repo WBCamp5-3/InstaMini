@@ -6,34 +6,35 @@ const Schema = mongoose.Schema;
 //"new" instantiates an object
 //Defining each column (name, email, etc) and their properties
 const UserSchema = new Schema({
-  userName: {
-    type: String,
-    required: true
-  },
-  fullName: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  profilePicture: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: String,
-    required: false
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
+	userName: {
+		type: String,
+		required: true
+	},
+	fullName: {
+		type: String,
+		required: true
+	},
+	email: {
+		type: String,
+		required: true
+	},
+	password: {
+		type: String,
+		required: true
+	},
+	profilePicture: {
+		type: String,
+		required: true
+	},
+	// location: {
+	//   type: String,
+	//   required: false
+	// },
+	date: {
+	  type: Date,
+	  default: Date.now
+	}
+	
 });
 
 //Instead of exporting just blueprint (UserSchema), export creation of what blueprint is for (table/document)
