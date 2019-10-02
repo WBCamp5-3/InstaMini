@@ -24,15 +24,15 @@ router.get('/',
     const errors = {};
 
     Profile.findOne({ user: req.user.id })
-      .populate('user', ['handle', 'fullName', 'profilePicture'])
-      .then(profile => {
-        if (!profile) {
-          errors.noprofile = 'There is no profile for this user';
-          return res.status(404).json(errors);
-        }
-        res.json(profile);
-      })
-      .catch(err => res.status(404).json(err));
+			.populate("user", ["userName", "fullName", "profilePicture"])
+			.then(profile => {
+				if (!profile) {
+					errors.noprofile = "There is no profile for this user";
+					return res.status(404).json(errors);
+				}
+				res.json(profile);
+			})
+			.catch(err => res.status(404).json(err));
   }
 )
 
@@ -44,16 +44,16 @@ router.get('/all', (req, res) => {
   const errors = {};
 
   Profile.find()
-    .populate('user', ['handle', 'fullName', 'profilePicture'])
-    .then(profiles => {
-      if (!profiles) {
-        errors.noprofile = 'There are no profiles';
-        return res.status(404).json(errors);
-      }
+		.populate("user", ["userName", "fullName", "profilePicture"])
+		.then(profiles => {
+			if (!profiles) {
+				errors.noprofile = "There are no profiles";
+				return res.status(404).json(errors);
+			}
 
-      res.json(profiles);
-    })
-    .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
+			res.json(profiles);
+		})
+		.catch(err => res.status(404).json({ profile: "There are no profiles" }));
 });
 
 
@@ -66,16 +66,16 @@ router.get('/handle/:h', (req, res) => {
   const errors = {};
 
   Profile.findOne({ handle: req.params.h })
-    .populate('user', ['handle', 'fullName', 'profilePicture'])
-    .then(profile => {
-      if (!profile) {
-        errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
-      }
+		.populate("user", ["userName", "fullName", "profilePicture"])
+		.then(profile => {
+			if (!profile) {
+				errors.noprofile = "There is no profile for this user";
+				res.status(404).json(errors);
+			}
 
-      res.json(profile);
-    })
-    .catch(err => res.status(404).json(err));
+			res.json(profile);
+		})
+		.catch(err => res.status(404).json(err));
 });
 
 
@@ -88,18 +88,18 @@ router.get('/user/:user_id', (req, res) => {
   const errors = {};
 
   Profile.findOne({ user: req.params.user_id })
-    .populate('user', ['handle', 'fullName', 'profilePicture'])
-    .then(profile => {
-      if (!profile) {
-        errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
-      }
+		.populate("user", ["userName", "fullName", "profilePicture"])
+		.then(profile => {
+			if (!profile) {
+				errors.noprofile = "There is no profile for this user";
+				res.status(404).json(errors);
+			}
 
-      res.json(profile);
-    })
-    .catch(err =>
-      res.status(404).json({ profile: 'There is no profile for this user' })
-    );
+			res.json(profile);
+		})
+		.catch(err =>
+			res.status(404).json({ profile: "There is no profile for this user" })
+		);
 });
 
 
@@ -123,6 +123,7 @@ router.post(
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.location) profileFields.location = req.body.location;
     if (req.body.status) profileFields.status = req.body.status;
+    if (req.body.bio) profileFields.status = req.body.bio;
 
     // // Social
     // profileFields.social = {};
