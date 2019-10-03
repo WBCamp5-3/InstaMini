@@ -6,6 +6,10 @@ const FollowingSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "users"
 	},
+	handle: {
+		type: String,
+		max: 40
+	},
 
 	People: [
 		{
@@ -13,15 +17,15 @@ const FollowingSchema = new Schema({
 				type: Schema.Types.ObjectId,
 				ref: "users"
 			},
-			username: {
+			userName: {
 				type: String,
 				required: true
 			},
-			fullname: {
+			fullName: {
 				type: String,
 				required: true
 			},
-			profilepicture: {
+			profilePicture: {
 				type: String,
 				required: true
 			}

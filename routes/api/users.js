@@ -42,12 +42,13 @@ router.post("/register", (req, res) => {
         });
         // building new user object to write to database
         const newUser = new User({
-          name: req.body.name,
-          email: req.body.email,
-          // profilePicture uses deconstruction since column and variable name are same
-          profilePicture,
-          password: req.body.password
-        });
+					userName: req.body.userName,
+					fullName: req.body.fullName,
+					email: req.body.email,
+					// profilePicture uses deconstruction since column and variable name are same
+					profilePicture,
+					password: req.body.password
+				});
         // bcrypt has genSalt function
         // 10 (default) is for rounds, err & salt are parameters for callback function
         bcrypt.genSalt(10, (err, salt) => {
@@ -100,10 +101,10 @@ router.post("/login", (req, res) => {
           }
 
           const payload = {
-            id: user.id,
-            name: user.name,
-            profilePicture: user.profilePicture
-          };
+						id: user.id,
+						userName: user.userName,
+						profilePicture: user.profilePicture
+					};
           //token is in the form of garbage set of characters.
           //each token is unique based on the combinations of data(id,name and avatar) in payload.
           // token helps in authentication without compromising the PII.
@@ -136,11 +137,11 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json({
-      //passport sends back the following info from MongoDb:
-      id: req.user.id,
-      email: req.user.email,
-      name: req.user.name
-    });
+			//passport sends back the following info from MongoDb:
+			id: req.user.id,
+			email: req.user.email,
+			userName: req.user.userName
+		});
   }
 );
 

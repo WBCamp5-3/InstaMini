@@ -177,14 +177,14 @@ router.post(
     }
 
     Profile.findOne({ user: req.user.id }).then(profile => {
-      const newPos = {
+      const newPosts = {
         image: req.body.image,
         location: req.body.location,
         description: req.body.description
       };
 
       // Add to posts array
-      profile.posts.unshift(newPos);
+      profile.posts.unshift(newPosts);
 
       profile.save().then(profile => res.json(profile));
     });
