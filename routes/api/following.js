@@ -3,49 +3,40 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+const Following = require("../../models/Following");
 // Load Profile Model
 const Profile = require("../../models/Profile");
 // Load User Model
-const Following = require("../../models/Following");
+
 // Load Validation
 const validateFollowingInput = require("../../validation/following");
 
-// @route   GET api/Following
-// @desc    Get Following
-// @access  Public
-router.get('/', (req, res) => {
-  Following.find()
-		.sort({ date: -1 })
-		.then(followings => res.json(followings))
-		.catch(err =>
-			res.status(404).json({ nofollowingsfound: "No followings found" })
-		);
-});
-
-// @route   POST api/Following
-// @desc    Create Following
+// @route   POST api/following
+// @desc    Create following
 // @access  Private
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateFollowingInput(req.body);
+      const { errors, isValid } = validateFollowingInput(req.body);
 
     // Check Validation
     if (!isValid) {
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
-
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      
     const newFollowing = new Following({
-			userName: req.body.userName,
-			// fullName: req.body.fullName,
-			// profilePicture: req.body.profilePicture,
-			// user: req.user.id
-		});
+            user: req.user.id
+    });
 
     newFollowing.save().then(following => res.json(following));
+
+    })
+
   }
 );
 
+   
 module.exports = router;

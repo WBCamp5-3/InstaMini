@@ -6,14 +6,7 @@ const FollowingSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "users"
 	},
-	handle: {
-		type: String,
-		max: 40
-	},
-	userName: {
-		type: String,
-		required: true
-	},
+	
 
 	People: [
 		{
