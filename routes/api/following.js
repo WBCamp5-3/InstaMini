@@ -26,14 +26,17 @@ router.post(
       return res.status(400).json(errors);
     }
     Profile.findOne({ user: req.user.id }).then(profile => {
-      
+
     const newFollowing = new Following({
-            user: req.user.id
-    });
+			userName: req.body.userName,
+			fullName: req.body.fullName,
+			profilePicture: req.body.profilePicture,
+			user: req.user.id
+		});
 
     newFollowing.save().then(following => res.json(following));
 
-    })
+    });
 
   }
 );

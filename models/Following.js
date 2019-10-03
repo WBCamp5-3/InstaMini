@@ -6,6 +6,17 @@ const FollowingSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "users"
 	},
+	userName: {
+				type: String
+			},
+	fullName: {
+				type: String
+				
+			},
+	profilePicture: {
+				type: String
+			
+			},
 	
 
 	People: [

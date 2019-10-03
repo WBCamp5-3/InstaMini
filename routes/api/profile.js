@@ -222,5 +222,76 @@ router.post(
 );
 
 
+
+// @route   DELETE api/profile/posts/:posts_id
+// @desc    Delete posts from profile
+// @access  Private
+router.delete(
+	"/posts/:posts_id",
+	passport.authenticate("jwt", { session: false }),
+	(req, res) => {
+		let errors = {};
+		Profile.findOne({ user: req.user.id })
+			.then(profile => {
+				// Get remove index
+				const removeIndex = profile.posts
+					.map(item => item.id)
+					.indexOf(req.params.posts_id);
+
+				if (removeIndex === -1) {
+					errors.postsnotfound = "post not found";
+					// Return any errors with 404 status
+					return res.status(404).json(errors);
+				}
+				// Splice out of array
+				profile.posts.splice(removeIndex, 1);
+
+				// Save
+				profile.save().then(profile => res.json(profile));
+			})
+			.catch(err => res.status(404).json(err));
+	}
+);
+
+// @route   DELETE api/profile/tagged/:tagged_id
+// @desc    Delete tagged from profile
+// @access  Private
+router.delete(
+	"/tagged/:tagged_id",
+	passport.authenticate("jwt", { session: false }),
+	(req, res) => {
+		Profile.findOne({ user: req.user.id })
+			.then(profile => {
+				// Get remove index
+				const removeIndex = profile.tagged
+					.map(item => item.id)
+					.indexOf(req.params.tagged_id);
+
+				// Splice out of array
+				profile.tagged.splice(removeIndex, 1);
+
+				// Save
+				profile.save().then(profile => res.json(profile));
+			})
+			.catch(err => res.status(404).json(err));
+	}
+);
+
+// @route   DELETE api/profile
+// @desc    Delete user and profile
+// @access  Private
+router.delete(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ success: true })
+      );
+    });
+  }
+);
+
+
 module.exports = router;
 
