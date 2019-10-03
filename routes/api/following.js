@@ -39,9 +39,9 @@ router.post(
 
     const newFollowing = new Following({
 			userName: req.body.userName,
-			fullName: req.body.fullName,
-			profilePicture: req.body.profilePicture,
-			user: req.user.id
+			// fullName: req.body.fullName,
+			// profilePicture: req.body.profilePicture,
+			// user: req.user.id
 		});
 
     newFollowing.save().then(following => res.json(following));

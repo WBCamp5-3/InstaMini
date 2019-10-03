@@ -8,11 +8,11 @@ module.exports = function validateFollowingInput(data) {
 	
 
 	if (!Validator.isLength(data.userName, { min: 2, max: 40 })) {
-		errors.userName = "Handle needs to between 2 and 40 characters";
+		errors.userName = "userName needs to between 2 and 40 characters";
 	}
 
 	if (Validator.isEmpty(data.userName)) {
-		errors.userName = "Profile handle is required";
+		errors.userName = "userName is required";
 	}
 
 

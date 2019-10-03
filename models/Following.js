@@ -10,6 +10,10 @@ const FollowingSchema = new Schema({
 		type: String,
 		max: 40
 	},
+	userName: {
+		type: String,
+		required: true
+	},
 
 	People: [
 		{
@@ -18,16 +22,16 @@ const FollowingSchema = new Schema({
 				ref: "users"
 			},
 			userName: {
-				type: String,
-				required: true
+				type: String
+				// required: true
 			},
 			fullName: {
-				type: String,
-				required: true
+				type: String
+				// required: true
 			},
 			profilePicture: {
-				type: String,
-				required: true
+				type: String
+				// required: true
 			}
 		}
 	]
