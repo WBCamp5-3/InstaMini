@@ -6,10 +6,22 @@ const passport = require("passport");
 const Following = require("../../models/Following");
 // Load Profile Model
 const Profile = require("../../models/Profile");
-// Load User Model
+
 
 // Load Validation
 const validateFollowingInput = require("../../validation/following");
+
+// @route   GET api/following
+// @desc    Get following
+// @access  Public
+router.get('/', (req, res) => {
+  Following.find()
+		.sort({ date: -1 })
+		.then(followings => res.json(followings))
+		.catch(err =>
+			res.status(404).json({ nofollowingsfound: "No followings found" })
+		);
+});
 
 // @route   POST api/following
 // @desc    Create following

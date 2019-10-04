@@ -34,7 +34,7 @@ app.get("/", (req, res) => res.send("hello team 3!"));
 
 app.use("/api/users", users);
 app.use("/api/profile", profile);
-app.use("/api/posts", following);
+app.use("/api/following", following);
 
 const port = 5104;
 
