@@ -4,11 +4,11 @@ const isEmpty = require("./is-empty");
 module.exports = function validateFollowingInput(data) {
 	let errors = {};
 
-	data.follow = !isEmpty(data.follow) ? data.follow : "";
+	data.following = !isEmpty(data.following) ? data.following : "";
 
 	
-	if (Validator.isEmpty(data.follow)) {
-		errors.follow = "this instamini not followed";
+	if (Validator.isEmpty(data.following)) {
+		errors.following = "this instamini not followed";
 	}
 
 	return {
