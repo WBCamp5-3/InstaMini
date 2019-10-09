@@ -57,10 +57,13 @@ const ProfileSchema = new Schema({
   ],
   following: [
     {
-      people: {
+      userName: {
         type: [String]
       },
-      avatar: {
+      fullName: {
+        type: [String]
+      },
+      profilePicture: {
         type: [String]
       }
     }
