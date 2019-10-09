@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 const Following = require("../../models/Following");
+
+const People = require("../../models/Following");
+
 // Load Profile Model
 const Profile = require("../../models/Profile");
 
@@ -54,7 +57,8 @@ router.post(
 // @access  Private
 
 router.post(
-  "/people",
+  // why not just /people???? POST doesn't work with /following/people
+  "/following/people",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateFollowingInput(req.body);
@@ -65,13 +69,12 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    const newFollowing = new Following({
+    const newPeople = new People({
       userName: req.body.userName,
       fullName: req.body.fullName,
       profilePicture: req.body.profilePicture
     });
-
-    newFollowing.save().then(following => res.json(following));
+    newPeople.save().then(people => res.json(people));
   }
 );
 
