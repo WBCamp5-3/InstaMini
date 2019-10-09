@@ -222,38 +222,6 @@ router.post(
   }
 );
 
-// @route   POST api/profile/following
-// @desc    Add people user is following to profile
-// @access  Private
-
-router.post(
-  '/following',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validateFollowingInput(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
-    }
-
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      const newFollowing = {
-        people: req.body.people,
-        avatar: req.body.avatar
-      };
-
-      // Add to following array
-      profile.following.unshift(newFollowing);
-
-      profile.save().then(profile => res.json(profile));
-
-    });
-  }
-);
-
-
 
 // @route   DELETE api/profile/posts/:posts_id
 // @desc    Delete posts from profile
