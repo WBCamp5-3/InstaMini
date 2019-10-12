@@ -18,10 +18,10 @@ module.exports = function validateRegisterInput(data) {
 	}
 
   if (Validator.isEmpty(data.userName)) {
-		errors.userName = "userName field is required";
+		errors.userName = "Username field is required";
   }
   if (Validator.isEmpty(data.fullName)) {
-		errors.fullName = "fullName field is required";
+		errors.fullName = "Fullname field is required";
 	}
 
     //Check for valid email address with built-in isEmail function
