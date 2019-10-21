@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import classnames from "classnames";
+import {connect} from 'react-redux';
+import {loginUser} from '../../actions/authActions';
+import PropTypes from "prop-types";
 
 class Login extends Component {
 	constructor() {
@@ -28,14 +30,18 @@ class Login extends Component {
 			password: this.state.password
 		};
 
-		axios
-			.post("/api/users/login", newUser)
-			.then(res => console.log(res.data))
-			.catch(err =>
-				this.setState({
-					errors: err.response.data
-				})
-			);
+		this.props.loginUser(newUser);
+
+	
+	}
+	componentWillReceiveProps(nextProps){
+		if(nextProps.auth.isAuthenticated){
+			this.props.history.push('/dashboard');
+		}
+		if(nextProps.errors){
+			this.setState({errors:nextProps.errors});
+		}
+		
 	}
 
 	render() {
@@ -91,4 +97,19 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+Login.propTypes ={
+	loginUser:PropTypes.func.isRequired,
+	auth:PropTypes.object.isRequired,
+	errors:PropTypes.object.isRequired
+
+};
+
+const mapStatetoProps =(state) => ({
+	auth:state.auth,
+	errors:state.errors
+})
+
+export default connect(
+	mapStatetoProps,
+	{ loginUser }
+)(Login);
