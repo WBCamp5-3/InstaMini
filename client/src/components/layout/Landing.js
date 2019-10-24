@@ -11,7 +11,7 @@ export default class Landing extends Component {
               <div className="col-md-12 text-center">
                 <h1 className="display-3 mb-4">InstaMini</h1>
                 <p className="lead">                 
-                  Create a user profile
+                  Share and view photos with others
                 </p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
