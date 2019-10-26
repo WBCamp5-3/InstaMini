@@ -13,7 +13,7 @@ class Dashboard extends Component {
     // User logged in but no profile
     dashboardContent = (
       <div>
-        <p className="lead text-muted">{user.userName}</p>
+        <p className="lead text-muted">Welcome {user.userName}</p>
         <Link to="/edit-profile" className="btn btn-lg btn-info">
           Edit Profile
             </Link>
