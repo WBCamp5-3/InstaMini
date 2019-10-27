@@ -35,8 +35,8 @@ class CreateProfile extends Component {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
+    if (nextProps.profile) {
+      const profile = nextProps.profile;
 
       // If profile field doesnt exist, make empty string
       profile.location = !isEmpty(profile.location) ? profile.location : "";
@@ -50,8 +50,8 @@ class CreateProfile extends Component {
         status: profile.status,
         bio: profile.bio
       });
-    }
-  }
+    };
+  };
 
   onSubmit(e) {
     e.preventDefault();
