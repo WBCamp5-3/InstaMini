@@ -15,6 +15,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import Dashboard from "./components/dashboard/Dashboard";
+import EditProfile from "./components/edit-profile/EditProfile";
 
 
 //check for token
@@ -41,23 +42,30 @@ if (localStorage.jwtToken) {
 class App extends Component {
 	render() {
 		return (
-			<Provider store={store}>
-				<Router>
-					<div className="App">
-						<Navbar />
-						<Route exact path="/" component={Landing} />
-						<div className="container">
-							<Route exact path="/register" component={Register} />
-							<Route exact path="/Login" component={Login} />
-							<Switch>
-								<PrivateRoute exact path="/dashboard" component={Dashboard} />
-							</Switch>
-						</div>
-						<Footer />
-					</div>
-				</Router>
-			</Provider>
-		);
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <div className="container">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/Login" component={Login} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
+                />
+              </Switch>
+            </div>
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
+    );
 	}
 }
 
