@@ -27,7 +27,7 @@ class Navbar extends Component {
 				</li>
 				<li className="nav-item">
 					<Link className="nav-link" to="/dashboard">
-						<i class="fa fa-user" aria-hidden="true"></i>
+						Dashboard
 					</Link>
 				</li>
 				<li className="nav-item">
