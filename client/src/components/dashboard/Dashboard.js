@@ -28,7 +28,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.handle}</Link>
+               Your Profile<Link to={`/profile/${profile.handle}`}>{user.handle}</Link>
             </p>
                         <div style={{ marginBottom: '60px' }} />
             <button
@@ -58,7 +58,7 @@ class Dashboard extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-12">
-							<h4 className="display-4">Welcome {user.userName}</h4>
+							<h4 className="display-4">{user.userName}</h4>
 							{dashboardContent}
 						</div>
 					</div>
