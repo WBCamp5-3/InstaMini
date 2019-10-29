@@ -13,7 +13,7 @@ module.exports = function validateProfileInput(data) {
 	}
 
   if (Validator.isEmpty(data.userName)) {
-		errors.userName = "Profile handle is required";
+		errors.userName = "Profile username is required";
 	}
 
   if (Validator.isEmpty(data.fullName)) {

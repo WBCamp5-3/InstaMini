@@ -4,14 +4,14 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import { editProfile, getCurrentProfile } from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
 
-class CreateProfile extends Component {
+class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: "",
+      userName: "",
       website: "",
       location: "",
       bio: "",
@@ -39,13 +39,15 @@ class CreateProfile extends Component {
       const profile = nextProps.profile;
 
       // If profile field doesnt exist, make empty string
+      profile.userName = !isEmpty(profile.userName) ? profile.userName : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.status = !isEmpty(profile.status) ? profile.status : "";
 
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
 
       // Set component fields state
       this.setState({
-        handle: profile.handle,
+        userName: profile.userName,
         location: profile.location,
         status: profile.status,
         bio: profile.bio
@@ -57,13 +59,13 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
-      handle: this.state.handle,
+      userName: this.state.userName,
       location: this.state.location,
       status: this.state.status,
       bio: this.state.bio
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.editProfile(profileData, this.props.history);
   }
 
   onChange(e) {
@@ -74,7 +76,7 @@ class CreateProfile extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="create-profile">
+      <div className="edit-profile">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -85,12 +87,12 @@ class CreateProfile extends Component {
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
+                  placeholder="* Profile Username"
+                  name="username"
+                  value={this.state.userName}
                   onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
+                  error={errors.userName}
+                  info=" Your username"
                 />
                 <TextFieldGroup
                   placeholder="Status"
@@ -146,8 +148,8 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
+EditProfile.propTypes = {
+  editProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -160,5 +162,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
-)(withRouter(CreateProfile));
+  { editProfile, getCurrentProfile }
+)(withRouter(EditProfile));

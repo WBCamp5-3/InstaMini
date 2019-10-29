@@ -30,7 +30,7 @@ export const getCurrentProfile = () => dispatch => {
 
 
 // Create Profile
-export const createProfile = (profileData, history) => dispatch => {
+export const editProfile = (profileData, history) => dispatch => {
 	axios
 		.post("/api/profile", profileData)
 		.then(res => history.push("/dashboard"))
