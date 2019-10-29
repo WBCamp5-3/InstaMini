@@ -72,7 +72,7 @@ export const addPost= (postData, history) => dispatch => {
     );
 };
 
-// Delete Education
+// Delete Post
 export const deletePost = id => dispatch => {
   axios
     .delete(`/api/profile/posts/${id}`)

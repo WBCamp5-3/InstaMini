@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Moment from "react-moment";
-import { deleteEducation } from "../../actions/profileActions";
+import { deletePost } from "../../actions/profileActions";
 
 class Post extends Component {
   onDeleteClick(id) {
@@ -13,8 +12,8 @@ class Post extends Component {
     const post = this.props.post.map(post => (
       <tr key={post._id}>
         <td>{post.image}</td>
-        <td>{edu.location}</td>
-        <td>{edu.description}</td>
+        <td>{post.location}</td>
+        <td>{post.description}</td>
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, post._id)}
