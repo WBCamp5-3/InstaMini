@@ -59,6 +59,37 @@ export const editProfile = (profileData, history) => dispatch => {
 		);
 };
 
+// Add post
+export const addPost= (postData, history) => dispatch => {
+  axios
+    .post('/api/profile/posts', postData)
+    .then(res => history.push('/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Education
+export const deletePost = id => dispatch => {
+  axios
+    .delete(`/api/profile/posts/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Delete account & profile
 export const deleteAccount = () => dispatch => {
 	if (window.confirm("Are you sure? This can NOT be undone!")) {
