@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
-import Spinner from '../common/Spinner';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+import Spinner from "../common/Spinner";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -28,9 +28,14 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-               Your Profile<Link to={`/profile/${profile.handle}`}>{user.handle}</Link>
+              Your Profile
+              <Link to={`/profile/${profile.handle}`}>{user.handle}</Link>
             </p>
-                        <div style={{ marginBottom: '60px' }} />
+            <p className="lead text-muted">
+              Your Posts
+              <Link to={`/profile/${profile.posts}`}>{user.posts}</Link>
+            </p>
+            <div style={{ marginBottom: "60px" }} />
             <button
               onClick={this.onDeleteClick.bind(this)}
               className="btn btn-danger"
@@ -54,17 +59,17 @@ class Dashboard extends Component {
     }
 
     return (
-			<div className="dashboard">
-				<div className="container">
-					<div className="row">
-						<div className="col-md-12">
-							<h4 className="display-4">{user.userName}</h4>
-							{dashboardContent}
-						</div>
-					</div>
-				</div>
-			</div>
-		);
+      <div className="dashboard">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h4 className="display-4">{user.userName}</h4>
+              {dashboardContent}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
@@ -80,6 +85,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
-  Dashboard
-);
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile, deleteAccount }
+)(Dashboard);

@@ -65,7 +65,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/add-post"
+                  path="/add-posts"
                   component={AddPost}
                 />
               </Switch>
