@@ -4,27 +4,27 @@ const isEmpty = require('./is-empty');
 module.exports = function validateProfileInput(data) {
   let errors = {};
 
-  data.userName = !isEmpty(data.userName) ? data.userName : "";
-  data.fullName = !isEmpty(data.fullName) ? data.fullName : '';
-  data.profilePicture = !isEmpty(data.profilePicture) ? data.profilePicture : '';
+  data.handle = !isEmpty(data.handle) ? data.handle : "";
+  data.status = !isEmpty(data.status) ? data.status : '';
+  data.location = !isEmpty(data.location) ? data.location : "";
+  
 
-  if (!Validator.isLength(data.userName, { min: 2, max: 40 })) {
-		errors.userName = "Handle needs to between 2 and 40 characters";
+
+  if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
+		errors.handle = "Handle needs to between 2 and 40 characters";
 	}
 
-  if (Validator.isEmpty(data.userName)) {
-		errors.userName = "Profile handle is required";
+  if (Validator.isEmpty(data.handle)) {
+		errors.handle = "Profile handle is required";
+  }
+  if (Validator.isEmpty(data.status)) {
+		errors.status = "status is required";
+  }
+  if (Validator.isEmpty(data.location)) {
+		errors.location = "Location is required";
 	}
 
-  if (Validator.isEmpty(data.fullName)) {
-    errors.fullName = 'Full name field is required';
-  }
-
-  if (Validator.isEmpty(data.profilePicture)) {
-    errors.profilePicture = 'Profile picture field is required';
-  }
-
- 
+   
   return {
     errors,
     isValid: isEmpty(errors)
