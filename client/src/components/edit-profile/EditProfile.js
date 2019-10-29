@@ -85,7 +85,7 @@ class EditProfile extends Component {
 							</Link>
 							<h1 className="display-4 text-center">Edit Profile</h1>
 							<small className="d-block pb-3">* = required fields</small>
-							<form onSubmit={this.onSubmit}>
+							<form noValidate onSubmit={this.onSubmit}>
 								<TextFieldGroup
 									placeholder="* Profile handle"
 									name="handle"
@@ -129,7 +129,6 @@ class EditProfile extends Component {
 								/>
 								<input
 									type="submit"
-									value="Submit"
 									className="btn btn-info btn-block mt-4"
 								/>
 							</form>

@@ -10,12 +10,12 @@ module.exports = function validateProfileInput(data) {
   
 
 
-  if (!Validator.isLength(data.userName, { min: 2, max: 40 })) {
-		errors.userName = "Handle needs to between 2 and 40 characters";
+  if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
+		errors.handle = "Handle needs to between 2 and 40 characters";
 	}
 
   if (Validator.isEmpty(data.handle)) {
-		errors.userName = "Profile handle is required";
+		errors.handle = "Profile handle is required";
   }
   if (Validator.isEmpty(data.status)) {
 		errors.status = "status is required";
