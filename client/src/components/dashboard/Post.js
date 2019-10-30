@@ -11,7 +11,9 @@ class Post extends Component {
   render() {
     const post = this.props.post.map(post => (
       <tr key={post._id}>
-        <td>{post.image}</td>
+        <td>
+          <img src={post.image} />
+        </td>
         <td>{post.location}</td>
         <td>{post.description}</td>
         <td>
