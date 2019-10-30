@@ -64,6 +64,9 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/add-posts" component={AddPost} />
               </Switch>
+              {/* <Switch>
+                <PrivateRoute exact path="/dashboard" component={Post} />
+              </Switch> */}
             </div>
             <Footer />
           </div>
