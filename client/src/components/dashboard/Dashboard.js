@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
+import ProfileActions from "./ProfileActions";
+import Post from './Post';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -26,24 +28,23 @@ class Dashboard extends Component {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
-          <div>
-            <p className="lead text-muted">
-              Your Profile
-              <Link to={`/profile/${profile.handle}`}>{user.handle}</Link>
-            </p>
-            <p className="lead text-muted">
-              Your Posts
-              <Link to={`/profile/${profile.posts}`}>{user.posts}</Link>
-            </p>
-            <div style={{ marginBottom: "60px" }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
-          </div>
-        );
+					<div>
+						<p className="lead text-muted">
+							Your Profile
+							<Link to={`/profile/${profile.handle}`}>{user.handle}</Link>
+						</p>
+						<ProfileActions />
+						<Post post={profile.posts} />
+						
+						<div style={{ marginBottom: "60px" }} />
+						<button
+							onClick={this.onDeleteClick.bind(this)}
+							className="btn btn-danger"
+						>
+							Delete My Account
+						</button>
+					</div>
+				);
       } else {
         // User is logged in but has no profile
         dashboardContent = (

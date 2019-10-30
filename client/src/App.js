@@ -15,7 +15,6 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import Dashboard from "./components/dashboard/Dashboard";
-import Post from "./components/dashboard/Post";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddPost from "./components/add-posts/AddPost";
 

@@ -77,7 +77,7 @@ class AddPost extends Component {
                 />
                 <TextFieldGroup
                   placeholder="* Image Location"
-                  name="degree"
+                  name="location"
                   value={this.state.location}
                   onChange={this.onChange}
                   error={errors.location}
