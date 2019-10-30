@@ -32,8 +32,8 @@ class AddPost extends Component {
     e.preventDefault();
 
     const postData = {
-      school: this.state.image,
-      degree: this.state.location,
+      image: this.state.image,
+      location: this.state.location,
       description: this.state.description
     };
 
