@@ -12,7 +12,7 @@ class Post extends Component {
     const post = this.props.post.map(post => (
       <tr key={post._id}>
         <td>
-          <img src={post.image} alt="" />
+          <img src={post.image} style={{ width: 100, height: 100 }}  alt="" />
         </td>
         <td>{post.location}</td>
         <td>{post.description}</td>
