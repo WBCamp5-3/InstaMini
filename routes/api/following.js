@@ -57,8 +57,8 @@ router.post(
 // @access  Private
 
 router.post(
-  // why not just /people???? POST doesn't work with /following/people
-  "/following/people",
+
+    "/people",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateFollowingInput(req.body);

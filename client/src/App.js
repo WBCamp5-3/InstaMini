@@ -17,6 +17,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import AddPost from "./components/add-posts/AddPost";
+import Following from "./components/following/Following";
 
 
 //check for token
@@ -66,6 +67,12 @@ class App extends Component {
 							<Switch>
 								<PrivateRoute exact path="/add-posts" component={AddPost} />
 							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/following" component={Following} />
+							</Switch>
+							{/* <Switch>
+								<PrivateRoute exact path="/following/:id" component={Following} />
+							</Switch> */}
 						</div>
 						<Footer />
 					</div>
