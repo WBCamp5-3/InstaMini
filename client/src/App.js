@@ -15,7 +15,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/common/PrivateRoute";
 import EditProfile from "./components/edit-profile/EditProfile";
 import Profiles from "./components/profiles/Profiles";
-
+import Profile from "./components/profile/Profile";
 import AddPost from "./components/add-posts/AddPost";
 
 
@@ -43,35 +43,35 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div className="App">
-            <Navbar />
-            <Route exact path="/" component={Landing} />
-            <div className="container">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/Login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/add-posts" component={AddPost} />
-              </Switch>
-            
-            </div>
-            <Footer />
-          </div>
-        </Router>
-      </Provider>
-    );
+			<Provider store={store}>
+				<Router>
+					<div className="App">
+						<Navbar />
+						<Route exact path="/" component={Landing} />
+						<div className="container">
+							<Route exact path="/register" component={Register} />
+							<Route exact path="/Login" component={Login} />
+							<Route exact path="/profiles" component={Profiles} />
+							<Route exact path="/profile/:handle" component={Profile} />
+							<Switch>
+								<PrivateRoute exact path="/dashboard" component={Dashboard} />
+							</Switch>
+							<Switch>
+								<PrivateRoute
+									exact
+									path="/edit-profile"
+									component={EditProfile}
+								/>
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/add-posts" component={AddPost} />
+							</Switch>
+						</div>
+						<Footer />
+					</div>
+				</Router>
+			</Provider>
+		);
   }
 }
 
