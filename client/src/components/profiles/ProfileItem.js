@@ -19,10 +19,16 @@ class ProfileItem extends Component {
               className="rounded-circle"
             />
           </div>
+
           <div className="col-lg-6 col-md-4 col-8">
             {/* why does {profile.user.fullName} give error? */}
-            {/* {profile.fullName} doesn't show, no error given */}
+            {/* {profile.fullName} doesn't show, no error given */}            
             <h3>{profile.fullName}</h3>
+
+            {/* why does {profile.user.userName} give error? */}
+            {/* {profile.user} doesn't show, no error given */}
+            <h3>{profile.userName}</h3>
+
             <h3>{profile.handle}</h3>
 
             <p>
