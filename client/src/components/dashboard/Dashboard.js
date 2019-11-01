@@ -30,8 +30,7 @@ class Dashboard extends Component {
         dashboardContent = (
 					<div>
 						<p className="lead text-muted">
-							{/* Your Profile */}
-							{/* <Link to={`/profile/${profile.handle}`}>{user.handle}</Link> */}
+							<Link to={`/profile/${profile.handle}`}>Your Profile</Link>
 						</p>
 						<ProfileActions />
 						<Post post={profile.posts} />
