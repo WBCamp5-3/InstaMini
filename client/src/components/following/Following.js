@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
-import { getFollowing } from "../../actions/followingActions";
+import { getFollowing , addFollowing } from "../../actions/followingActions";
 
 class Following extends Component {
   componentDidMount() {
@@ -10,7 +10,7 @@ class Following extends Component {
   }
 
   render() {
-    const { following, loading } = this.props.following;
+    const { following, loading } = this.props;
     let followingContent;
 
     if (following === null || loading) {
@@ -40,12 +40,13 @@ class Following extends Component {
 }
 
 Following.propTypes = {
-  getFollowing: PropTypes.func.isRequired,
-  following: PropTypes.object.isRequired
+	getFollowing: PropTypes.func.isRequired,
+	addFollowing: PropTypes.func.isRequired,
+	following: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   following: state.following
 });
 
-export default connect(mapStateToProps, { getFollowing })(Following);
+export default connect(mapStateToProps, { getFollowing , addFollowing})(Following);
