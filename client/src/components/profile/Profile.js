@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-//import ProfileHeader from './ProfileHeader';
+import ProfileHeader from "./ProfileHeader";
+import ProfileAbout from "./ProfileAbout";
 import Spinner from '../common/Spinner';
 import { getProfileByHandle } from '../../actions/profileActions';
 
@@ -36,8 +37,8 @@ class Profile extends Component {
             </div>
             <div className="col-md-6" />
           </div>
-          {/* <ProfileHeader profile={profile} /> */}
-          
+          <ProfileHeader profile={profile} />
+          <ProfileAbout profile={profile} />
         </div>
       );
     }
