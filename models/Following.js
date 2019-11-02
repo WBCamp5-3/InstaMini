@@ -6,7 +6,7 @@ const FollowingSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "users"
 	},
-	follow: {
+	following: {
 		type: String,
 		required:true
 	},

@@ -25,6 +25,17 @@ router.get("/", (req, res) => {
     );
 });
 
+// @route   GET api/following/:id
+// @desc    Get following by id
+// @access  Public
+router.get('/:id', (req, res) => {
+  Following.findById(req.params.id)
+    .then(following => res.json(following))
+    .catch(err =>
+      res.status(404).json({ nofollow: 'Not Following' })
+    );
+});
+
 // @route   POST api/following
 // @desc    Create following
 // @access  Private
@@ -39,9 +50,8 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
-
+    
     const newFollowing = new Following({
-      follow: req.body.follow,
       userName: req.body.userName,
       fullName: req.body.fullName,
       profilePicture: req.body.profilePicture,
@@ -50,6 +60,7 @@ router.post(
 
     newFollowing.save().then(following => res.json(following));
   }
+
 );
 
 // @route   POST api/following/people
