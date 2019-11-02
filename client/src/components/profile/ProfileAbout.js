@@ -37,9 +37,10 @@ class ProfileAbout extends Component {
               ) : (
                 // NEED TO LOOP THROUGH ARRAY OF IMAGES
                 <span>
+                  {console.log(profile)};
                   <img
                     src={profile.posts[0].image}
-                    style={{ width: 200 }}
+                    style={{ width: 200 }} alt=""
                   />
                 </span>
               )}
