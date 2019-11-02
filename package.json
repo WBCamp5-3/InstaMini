@@ -1,5 +1,5 @@
 {
-  "name": "instapics",
+  "name": "InstaMini",
   "version": "1.0.0",
   "description": "pictures and video sharing on social network",
   "main": "server.js",
