@@ -6,7 +6,7 @@ class ProfileAbout extends Component {
   render() {
     const { profile } = this.props;
     console.log(profile);
-    console.log(profile.posts[0].image);
+    //console.log(profile.posts[0].image);
 
     return (
       <div className="row">
@@ -32,15 +32,16 @@ class ProfileAbout extends Component {
             </h3>
 
             <p className="lead">
-              {isEmpty(profile.posts[0].image) ? (
+              {isEmpty(profile.posts) ? (
                 <span>{profile.user.userName} does not have any posts</span>
               ) : (
-                // NEED TO LOOP THROUGH ARRAY OF IMAGES
+                // Need to show all images (not just first one)
                 <span>
                   {console.log(profile)};
                   <img
                     src={profile.posts[0].image}
-                    style={{ width: 200 }} alt=""
+                    style={{ width: 200 }}
+                    alt=""
                   />
                 </span>
               )}
