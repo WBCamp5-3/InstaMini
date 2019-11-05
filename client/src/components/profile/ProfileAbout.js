@@ -35,23 +35,22 @@ class ProfileAbout extends Component {
               {isEmpty(profile.posts) ? (
                 <span>{profile.user.userName} does not have any posts</span>
               ) : (
-                // Need to show all images (not just first one)
+                
                 <span>
-                  {console.log(profile)};
+                  {/* {console.log(profile)};
                   {console.log("posts.length: " + profile.posts.length)};
-                  {/* <img
-                    src={profile.posts[0].image}
-                    style={{ width: 200 }}
-                    alt=""
-                  /> */}
-                  {profile.posts.map((post,i)=> (
-                    <img
-                      src={profile.posts[i].image}
-                      style={{ width: 200 }}
-                      alt=""
-                      key={i}
-                    />
-                  ))}
+                   */}
+                    {profile.posts.map((post, i) => (
+                      <ul>
+                      <img
+                        src={profile.posts[i].image}
+                        style={{ width: 200 }}
+                        alt=""
+                        key={i}
+                      />
+                      </ul>
+                    ))}
+                  
                 </span>
               )}
             </p>
