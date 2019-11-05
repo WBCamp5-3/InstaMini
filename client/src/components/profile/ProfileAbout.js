@@ -5,7 +5,7 @@ import isEmpty from "../../validation/is-empty";
 class ProfileAbout extends Component {
   render() {
     const { profile } = this.props;
-    console.log(profile);
+    //console.log(profile);
     //console.log(profile.posts[0].image);
 
     return (
@@ -38,11 +38,20 @@ class ProfileAbout extends Component {
                 // Need to show all images (not just first one)
                 <span>
                   {console.log(profile)};
-                  <img
+                  {console.log("posts.length: " + profile.posts.length)};
+                  {/* <img
                     src={profile.posts[0].image}
                     style={{ width: 200 }}
                     alt=""
-                  />
+                  /> */}
+                  {profile.posts.map((post,i)=> (
+                    <img
+                      src={profile.posts[i].image}
+                      style={{ width: 200 }}
+                      alt=""
+                      key={i}
+                    />
+                  ))}
                 </span>
               )}
             </p>
