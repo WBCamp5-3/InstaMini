@@ -5,9 +5,7 @@ import isEmpty from "../../validation/is-empty";
 class ProfileAbout extends Component {
   render() {
     const { profile } = this.props;
-    //console.log(profile);
-    //console.log(profile.posts[0].image);
-
+   
     return (
       <div className="row">
         <div className="col-md-12">
@@ -40,13 +38,13 @@ class ProfileAbout extends Component {
                   {/* {console.log(profile)};
                   {console.log("posts.length: " + profile.posts.length)};
                    */}
-                    {profile.posts.map((post, i) => (
+                    {profile.posts.map((post) => (
                       <ul>
                       <img
-                        src={profile.posts[i].image}
+                        src={post.image}
                         style={{ width: 200 }}
                         alt=""
-                        key={i}
+                        
                       />
                       </ul>
                     ))}
